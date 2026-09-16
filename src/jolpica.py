@@ -26,9 +26,33 @@ logger = logging.getLogger(__name__)
 
 USER_AGENT = "f1-retirement-predictor (educational project)"
 
+# How many times to retry a rate-limited (HTTP 429) request before giving up.
+MAX_RETRIES = 6
+
 
 def _cache_path(season: int, offset: int):
     return RAW_DIR / f"results_{season}_offset{offset:04d}.json"
+
+
+def _get_with_retry(url: str, offset: int, session: requests.Session) -> requests.Response:
+    """GET one page, backing off and retrying when the API says 429."""
+    for attempt in range(MAX_RETRIES + 1):
+        response = session.get(
+            url,
+            params={"limit": PAGE_SIZE, "offset": offset},
+            headers={"User-Agent": USER_AGENT},
+            timeout=30,
+        )
+        if response.status_code != 429 or attempt == MAX_RETRIES:
+            response.raise_for_status()
+            return response
+        # Honor the server's Retry-After if given, else exponential backoff.
+        retry_after = response.headers.get("Retry-After")
+        wait = float(retry_after) if retry_after else min(4 * 2**attempt, 120)
+        logger.warning("Rate limited (429); waiting %.0fs (attempt %d/%d)",
+                       wait, attempt + 1, MAX_RETRIES)
+        time.sleep(wait)
+    raise AssertionError("unreachable")
 
 
 def _fetch_page(season: int, offset: int, session: requests.Session) -> dict:
@@ -40,13 +64,7 @@ def _fetch_page(season: int, offset: int, session: requests.Session) -> dict:
 
     url = f"{API_BASE_URL}/{season}/results.json"
     logger.info("GET %s offset=%d", url, offset)
-    response = session.get(
-        url,
-        params={"limit": PAGE_SIZE, "offset": offset},
-        headers={"User-Agent": USER_AGENT},
-        timeout=30,
-    )
-    response.raise_for_status()
+    response = _get_with_retry(url, offset, session)
     payload = response.json()
 
     # Cache only after raise_for_status + json() succeed, so a failed request
