@@ -1,0 +1,9 @@
+# Data foundation (step 1)
+requests>=2.31
+pandas>=2.0
+pyarrow>=14.0
+
+# Planned for later steps (not used yet):
+# fastf1        - lap-by-lap timing, weather, telemetry (step 2+)
+# scikit-learn  - modeling (step 3+)
+# jupyter       - notebooks
