@@ -72,6 +72,22 @@ def find_oddities(df: pd.DataFrame) -> list[str]:
             "failures, withdrawals)."
         )
 
+    # Detect seasons where DNF causes stop being recorded: the share of
+    # non-finish rows carrying the generic "Retired" status jumps to ~all.
+    finished = df["status"].str.match(r"^(Finished|Lapped|\+\d+ Laps?)$")
+    generic_share = (
+        df[~finished].groupby("season")["status"].agg(lambda s: (s == "Retired").mean())
+    )
+    degraded = generic_share[generic_share > 0.5]
+    if not degraded.empty:
+        seasons = ", ".join(str(s) for s in degraded.index)
+        notes.append(
+            f"Cause recording break: in season(s) {seasons}, more than half of all "
+            "non-finish rows have the generic status `Retired` instead of a cause "
+            "(Accident, Engine, ...). The accident-vs-mechanical distinction is "
+            "effectively unavailable for those seasons."
+        )
+
     return notes
 
 

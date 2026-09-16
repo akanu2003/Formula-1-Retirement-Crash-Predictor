@@ -4,7 +4,10 @@ pandas>=2.0
 pyarrow>=14.0
 tabulate>=0.9  # lets pandas render markdown tables in the quality report
 
+# Step 2: exploration
+matplotlib>=3.8
+jupyter>=1.0
+
 # Planned for later steps (not used yet):
-# fastf1        - lap-by-lap timing, weather, telemetry (step 2+)
+# fastf1        - lap-by-lap timing, weather, telemetry (step 3+)
 # scikit-learn  - modeling (step 3+)
-# jupyter       - notebooks
