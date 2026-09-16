@@ -217,6 +217,161 @@ recent seasons where they exist. That creates a coverage trade-off — see decis
 
 ---
 
+# Step 2 explained: labels, features, and first look at the data
+
+Step 2 turned the raw results into something a model can learn from: **labels**
+(the thing to predict) and **features** (the information to predict it from),
+plus an exploration notebook. Still no models — that's step 3.
+
+New pieces:
+
+| File | What it is |
+|---|---|
+| `src/labels.py` | The labeling policy — the file to review and edit |
+| `src/build_features.py` | Builds the pre-race feature table |
+| `data/processed/features.parquet` | One row per driver-race: features + labels |
+| `notebooks/01_exploration.ipynb` | The charts, with commentary (run top to bottom) |
+| `reports/figures/*.png` | The same four charts as standalone images |
+
+## 1. How the labels were defined and why
+
+Each row gets two labels (a *label* is the answer we'll ask a model to predict):
+
+- **`dnf`** (did not finish): true/false, decided purely from the `status` string.
+  `Finished`, `+N Laps`, and `Lapped` count as finishing; all 86 other statuses
+  count as DNF. One deliberate choice: a driver who broke down near the end and
+  was still officially *classified* (say 90% distance completed) counts as a DNF
+  here, because the car did not make the flag — the project is about whether the
+  car survives the race, not about the FIA's classification rules.
+- **`dnf_category`**: for DNF rows, one of **accident** (crash, spin, or contact),
+  **mechanical** (the car or its equipment broke), or **other** (everything that
+  isn't a mid-race breakdown: disqualification, withdrew before the start,
+  illness, and the generic `Retired` with no recorded cause).
+
+The whole policy lives in one file, `src/labels.py`, as three plain sets of
+status strings you can read and edit. Seventeen statuses were judgment calls;
+each is listed in an `UNSURE` dict with a one-line reason (e.g. `Puncture`: tyre
+failure or debris damage? `Out of fuel`: the car "broke" or the team blundered?).
+Rows with those statuses are flagged in a `label_unsure` column — 234 rows, 2.3% —
+so you can later measure whether the debatable calls matter. If a future dataset
+contains a status the policy doesn't know, the code raises an error instead of
+guessing.
+
+**The result:** 7,750 finished vs 2,321 DNF (23% overall). DNFs split into 1,253
+mechanical, 818 accident, 250 other.
+
+**⚠ The biggest discovery of step 2:** from **2023 onward the data source stops
+recording DNF causes** — almost every retirement is just `Retired` (53 of 61
+non-finishes in 2023, 49 of 54 in 2024), while 2022 and earlier have detailed
+causes. I found this when the accident-vs-mechanical chart dropped to zero for
+2023–24 and confirmed it in the raw responses; the quality report now checks for
+it. Consequences: the binary DNF label is fine for all 25 seasons, but the
+accident/mechanical split only exists **through 2022** unless we backfill causes
+from another source. This reshapes decision 1 below.
+
+## 2. Data leakage, and how the features avoid it
+
+*Data leakage* means letting the model see information that would not exist at
+the moment of prediction — like computing a driver's career DNF rate *including
+the race you're predicting*. A leaky model looks brilliant in testing and is
+useless in reality, because at prediction time the future isn't available.
+
+Guards used here:
+
+- Races are ordered by (season, round), and every historical rate for a race is
+  computed **only from races strictly earlier** in that order. The current race's
+  outcome never feeds its own row. This is enforced in code (running totals are
+  shifted by one race) and tested: season 2000 round 1 must have *no* history at
+  all, and spot-checks recompute several values independently (e.g. Monza 2005's
+  circuit rate must equal the pooled 2000–2004 Monza rate — it does).
+- The spot-checks caught a real bug in the first version: circuit totals were
+  shifted along the *global* race calendar instead of within each circuit, so a
+  race inherited numbers from a different track. Worth remembering: leakage bugs
+  are quiet, tests are how you catch them.
+- Only pre-race information is included as features. Nothing from the race itself
+  (laps, finishing position, status) appears anywhere except the label columns.
+
+## 3. The features and why each might matter
+
+One row per driver-race, everything knowable before lights out:
+
+| Feature | What it is | Why it might matter |
+|---|---|---|
+| `season` | The year | Reliability improved enormously over 25 years; the era defines the baseline risk |
+| `round` | Race number in the season | Early-season races may show teething problems; late-season, worn components or title desperation |
+| `race_date` | Calendar date | Not a model input per se; needed for honest time-based train/test splits |
+| `circuit_id` | The track | Street circuits and chaotic venues genuinely differ in risk |
+| `driver_id` | The driver | Some drivers crash more, independent of machinery |
+| `constructor_id` | The team | The single biggest factor in mechanical reliability |
+| `grid` | Starting slot (0 = pit lane) | Back of the grid = slower, less reliable cars in mid-pack lap-1 traffic |
+| `driver_prior_starts` | Driver's earlier races (since 2000) | Experience; also a rookie flag (0 = debut) |
+| `driver_prior_dnf_rate` | Share of those races the driver didn't finish | The driver's own risk history |
+| `constructor_prev_season_dnf_rate` | Team's DNF rate over the whole previous season | Last year's reliability predicts this year's, imperfectly |
+| `circuit_hist_dnf_rate` | DNF rate of all earlier races at this track | The track's inherent attrition level |
+
+Missing values are left as gaps (NaN) rather than filled in: a debutant has no
+prior DNF rate (126 rows), a brand-new circuit has no history (810 rows), a
+constructor's first season has no previous season (1,495 rows — inflated because
+renamed teams get new IDs, see decision 3). How to handle the gaps is a modeling
+choice, so it is *not* baked into the data.
+
+Known limitation: history starts at 2000, our window's edge. Michael Schumacher's
+1990s races are invisible, so his "prior starts" in 2000 is 0 — early-window
+history features under-count established careers.
+
+## 4. What the charts show
+
+(Notebook: `notebooks/01_exploration.ipynb`; images: `reports/figures/`.)
+
+1. **DNF rate by season** — falls from ~40–44% (2000–2002) to ~11% (2024), in an
+   almost steady slide. Modern F1 is a different sport reliability-wise; any model
+   that ignores the era will be badly calibrated.
+2. **DNF rate by circuit** — a wide spread, from ~12% (Valencia) to ~45%
+   (Indianapolis — inflated by the farcical 2005 six-car race; 8 races total).
+   Melbourne, Monaco, and Montreal sit high; purpose-built modern tracks low. One
+   caveat: circuits used only in the high-attrition early 2000s look worse than
+   they were — circuit and era are tangled together.
+3. **DNF rate by grid position** — rises almost monotonically from ~11% (pole)
+   to ~32% (grid 22), with pit-lane starters at 40%. Grid encodes car quality,
+   reliability, and lap-1 traffic risk all at once — strong feature, murky causality.
+4. **DNF causes over time** — mechanical failures collapse (31% of entries in
+   2002 to well under 10% recently) while accidents decline much more gently
+   (~15% → ~7%), so *the causes of modern DNFs are mostly accidents, not
+   breakdowns*. The chart also displays the 2023+ recording break honestly: the
+   detailed lines end and a "cause not recorded" line takes over.
+
+## 5. Decisions to make before step 3 (modeling)
+
+1. **Target, given the recording break.** Binary DNF works for 2000–2024. For
+   accident-vs-mechanical you must pick: (a) model it only through 2022, (b)
+   backfill 2023–24 causes from another source (FastF1 session data, Wikipedia)
+   — extra work, decide if it's worth it, or (c) drop the cause model. My
+   suggestion: binary DNF on everything, cause model through 2022 as a second
+   experiment.
+2. **Era scope/weighting.** 2000-era cars DNF'd 3–4× more than today's, mostly
+   mechanically. Options: use all seasons and let the model learn the trend, drop
+   pre-2010 seasons, or weight recent seasons more. This interacts with how much
+   training data the rarer accident class needs.
+3. **Constructor lineage.** The data treats renamed teams (Jordan→Midland→Spyker
+   →Force India→Racing Point→Aston Martin…) as unrelated, wiping their history at
+   each rename and causing most of the 1,495 missing previous-season rates. Decide:
+   hand-curate a lineage map (one afternoon, better features) or accept the gaps.
+4. **The "other" DNFs and unsure labels.** Disqualifications, withdrawals,
+   pre-2023 generic `Retired` rows (~250 rows, plus 234 unsure-flagged): exclude
+   from training, fold into DNF, or leave out of the positive class? These aren't
+   the kind of "didn't finish" you're trying to predict, so I'd exclude `other`
+   rows from the cause model and count them as DNF in the binary one — but it's
+   your call.
+5. **Evaluation design.** Time-based split is a given (train on the past, test on
+   the future — random splits leak). Decide the boundary (e.g. train ≤2018 /
+   validate 2019–21 / test 2022–24) and the metric that matters: with 23% DNFs
+   (and ~11% in recent seasons), plain accuracy is misleading — a model saying
+   "everyone finishes" scores ~89% in 2024. Look at precision/recall or
+   calibration instead (happy to explain these when we get there).
+
+---
+
 *Everything here was generated by the code in `src/` — nothing was hand-edited.
 To reproduce from scratch: delete `data/` contents, then run
-`python -m src.build_dataset` and `python -m src.quality_report`.*
+`python -m src.build_dataset`, `python -m src.quality_report`,
+`python -m src.build_features`, and execute `notebooks/01_exploration.ipynb`.*

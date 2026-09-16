@@ -3,9 +3,9 @@
 Predicting whether a Formula 1 driver will retire from a race (accident, collision,
 mechanical failure, ...) using historical race data from the 2000–2024 seasons.
 
-**Current status: step 1 — data foundation only.** No feature engineering or
-modeling yet. See [EXPLANATION.md](EXPLANATION.md) for a plain-language walkthrough
-of everything built so far and the decisions to make before step 2.
+**Current status: step 2 — labels, pre-race features, and exploration.** No
+models yet. See [EXPLANATION.md](EXPLANATION.md) for a plain-language walkthrough
+of everything built so far and the decisions to make before step 3 (modeling).
 
 ## Project layout
 
@@ -14,12 +14,14 @@ of everything built so far and the decisions to make before step 2.
 │   ├── config.py         # Paths and constants (seasons, API settings)
 │   ├── jolpica.py        # Jolpica-F1 API client with on-disk caching
 │   ├── build_dataset.py  # Fetch + flatten results into one tidy table
-│   └── quality_report.py # Generate the data-quality report
+│   ├── quality_report.py # Generate the data-quality report
+│   ├── labels.py         # THE labeling policy: status -> DNF + category
+│   └── build_features.py # Pre-race feature table (leak-free history rates)
 ├── data/
 │   ├── raw/              # Cached API responses (git-ignored, re-fetchable)
-│   └── processed/        # Tidy dataset: Parquet + small CSV sample (committed)
-├── notebooks/            # Exploration notebooks (empty for now)
-├── reports/              # Generated reports (data quality)
+│   └── processed/        # Tidy datasets: Parquet + small CSV samples (committed)
+├── notebooks/            # 01_exploration.ipynb: DNF charts with commentary
+├── reports/              # Data-quality report + chart PNGs in figures/
 ├── requirements.txt
 └── EXPLANATION.md        # Read this first
 ```
@@ -37,9 +39,15 @@ python -m src.build_dataset
 
 # 3. Regenerate the data-quality report at reports/data_quality.md
 python -m src.quality_report
+
+# 4. Build the labeled, pre-race feature table at data/processed/features.parquet
+python -m src.build_features
+
+# 5. (optional) Re-run the exploration notebook and regenerate the chart PNGs
+jupyter nbconvert --to notebook --execute --inplace notebooks/01_exploration.ipynb
 ```
 
-Both commands are idempotent: run them as often as you like.
+Every command is idempotent: run them as often as you like.
 
 ## Data source
 
