@@ -40,10 +40,15 @@ python -m src.build_dataset
 # 3. Regenerate the data-quality report at reports/data_quality.md
 python -m src.quality_report
 
-# 4. Build the labeled, pre-race feature table at data/processed/features.parquet
+# 4. Rebuild the labeled table (runs the label validation checks) at
+#    data/processed/results_labeled.parquet
+python -m src.labels
+
+# 5. Build the pre-race feature table at data/processed/features.parquet
+#    (excludes cars that never took the start)
 python -m src.build_features
 
-# 5. (optional) Re-run the exploration notebook and regenerate the chart PNGs
+# 6. (optional) Re-run the exploration notebook and regenerate the chart PNGs
 jupyter nbconvert --to notebook --execute --inplace notebooks/01_exploration.ipynb
 ```
 

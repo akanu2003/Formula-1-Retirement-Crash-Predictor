@@ -229,24 +229,33 @@ New pieces:
 |---|---|
 | `src/labels.py` | The labeling policy — the file to review and edit |
 | `src/build_features.py` | Builds the pre-race feature table |
-| `data/processed/features.parquet` | One row per driver-race: features + labels |
+| `data/processed/results_labeled.parquet` | All 10,071 rows with labels — the audit trail |
+| `data/processed/features.parquet` | Modeling table: features + labels, never-started rows excluded |
 | `notebooks/01_exploration.ipynb` | The charts, with commentary (run top to bottom) |
 | `reports/figures/*.png` | The same four charts as standalone images |
+
+> **Note:** the labeling policy was revised after review — see
+> [Step 2 revision](#step-2-revision-labeling-fixes-after-review) below. The
+> section that follows describes the *current* (revised) policy.
 
 ## 1. How the labels were defined and why
 
 Each row gets two labels (a *label* is the answer we'll ask a model to predict):
 
-- **`dnf`** (did not finish): true/false, decided purely from the `status` string.
-  `Finished`, `+N Laps`, and `Lapped` count as finishing; all 86 other statuses
-  count as DNF. One deliberate choice: a driver who broke down near the end and
-  was still officially *classified* (say 90% distance completed) counts as a DNF
-  here, because the car did not make the flag — the project is about whether the
-  car survives the race, not about the FIA's classification rules.
+- **`dnf`** (did not finish): true/false, decided from the `status` string plus
+  `position_text` (the official classification, which outranks the status — see
+  the revision below). `Finished`, `+N Laps`, and `Lapped` count as finishing,
+  and so do disqualifications (a ruling explained in the revision); everything
+  else counts as DNF. One deliberate choice: a driver who broke down near the
+  end and was still officially *classified* (say 90% distance completed) counts
+  as a DNF here, because the car did not make the flag — the project is about
+  whether the car survives the race, not about the FIA's classification rules.
 - **`dnf_category`**: for DNF rows, one of **accident** (crash, spin, or contact),
-  **mechanical** (the car or its equipment broke), or **other** (everything that
-  isn't a mid-race breakdown: disqualification, withdrew before the start,
-  illness, and the generic `Retired` with no recorded cause).
+  **mechanical** (the car or its equipment broke), **unknown** (retired per the
+  classification but no cause on record), or **other** (withdrawals, illness,
+  safety, and the generic `Retired`).
+- **`started`** / **`disqualified`**: audit booleans added in the revision —
+  cars that never took the start, and cars stripped of a result they achieved.
 
 The whole policy lives in one file, `src/labels.py`, as three plain sets of
 status strings you can read and edit. Seventeen statuses were judgment calls;
@@ -257,8 +266,10 @@ so you can later measure whether the debatable calls matter. If a future dataset
 contains a status the policy doesn't know, the code raises an error instead of
 guessing.
 
-**The result:** 7,750 finished vs 2,321 DNF (23% overall). DNFs split into 1,253
-mechanical, 818 accident, 250 other.
+**The result (after the revision below):** in the full labeled table, 7,771
+finished vs 2,300 DNF; in the modeling table (never-started rows removed),
+10,039 rows with 2,268 DNFs (22.6%), split into 1,253 mechanical, 818 accident,
+15 unknown, 182 other.
 
 **⚠ The biggest discovery of step 2:** from **2023 onward the data source stops
 recording DNF causes** — almost every retirement is just `Retired` (53 of 61
@@ -340,6 +351,75 @@ history features under-count established careers.
    breakdowns*. The chart also displays the 2023+ recording break honestly: the
    detailed lines end and a "cause not recorded" line takes over.
 
+## Step 2 revision: labeling fixes after review
+
+After reviewing how the label treats edge cases, four changes were made to the
+policy. The numbers above already reflect them.
+
+### The classification now outranks the status string
+
+A cross-check of the label against `position_text` (the source's official
+classification: a number for classified cars, `R` retired, `D` disqualified,
+`W` withdrew) found 15 rows the old status-only rule got wrong. The source
+sometimes puts a **lap gap in the status field for a car that actually
+stopped**: Narain Karthikeyan, Malaysia 2011, completed 14 of 56 laps and is
+recorded as `positionText="R", status="+42 Laps"`; Mark Webber, Brazil 2005,
+did 45 of 71 laps with `status="+26 Laps"`. The old rule read only `status` and
+called these finishes. `classify_status` now takes the whole row, and a guard
+says: **`position_text == "R"` is a retirement no matter what the status
+says.** (Verified against the raw cached API responses — the quirk is in the
+source, not our loader.)
+
+### New cause value: "unknown"
+
+Those 15 rows have no recorded cause — their status field holds a lap gap, not
+a reason. They get a new category, **unknown**, rather than a guessed cause and
+rather than being folded into "other" (which would blur genuine retirements
+together with rows that never raced).
+
+### Cars that never started are excluded from modeling
+
+A new boolean **`started`** is False for rows whose status is `Did not start`,
+`Withdrew`, or `Not restarted` **and** whose lap count is zero — 32 rows. They
+stay in the labeled table (`results_labeled.parquet`) so the audit trail is
+intact, but `build_features` drops them *before computing anything*, so they are
+neither modeling rows nor part of any prior-rate denominator. Nothing on track
+caused those outcomes.
+
+**The laps guard is a deliberate deviation worth knowing about.** Four
+`Withdrew` rows are *not* pre-race withdrawals: Button (Malaysia 2013, 53/56
+laps), Norris (Mexico 2019, 48/71), Magnussen (Turkey 2020, 55/58), and Alonso
+(Mexico 2023, 47/71) all retired during the race, and the source simply coded
+the retirement as `Withdrew`. Marking them "never started" would be wrong (and
+the validation test below caught exactly this). They keep `started=True` and
+count as ordinary DNFs. A related loose end, left alone on purpose: ~25 rows
+have `position_text="W"` with a mechanical status and zero laps (cars that
+broke *before* the start, e.g. an engine failure on the way to the grid). The
+status rule doesn't catch them, so they currently stay in the modeling data as
+mechanical DNFs — flagging them is a decision for you (see decision 4 below).
+
+### Disqualifications are now finishes
+
+`Disqualified` (35 rows) and `Excluded` (1) changed from DNF to **finished**:
+these cars typically ran the full distance and lost the result afterwards at a
+stewards' table — the car survived the race, which is the question this project
+asks. They stay in the modeling data, flagged in a boolean **`disqualified`**
+column for later sensitivity checks (a *sensitivity check* = rerun the analysis
+with the rows treated the other way and see if conclusions change). One honest
+caveat that flag exists to cover: 8 of the 36 were disqualified having covered
+less than 90% of the distance (one with 0 laps), so for a few black-flag cases
+"finished" is a stretch.
+
+### Automatic validation on every rebuild
+
+`validate_labels()` in `src/labels.py` now runs inside `apply_labels()`, so no
+rebuild can skip it. It fails with an error (never a warning) if: any
+`position_text == "R"` row is labeled finished; any finished row carries a
+cause; any DNF row lacks a cause; or any `started=False` row completed laps.
+Audit columns `status` and `position_text` are carried through both the labeled
+table and the feature table so every decision can be re-checked without going
+back to the raw cache.
+
 ## 5. Decisions to make before step 3 (modeling)
 
 1. **Target, given the recording break.** Binary DNF works for 2000–2024. For
@@ -356,12 +436,16 @@ history features under-count established careers.
    →Force India→Racing Point→Aston Martin…) as unrelated, wiping their history at
    each rename and causing most of the 1,495 missing previous-season rates. Decide:
    hand-curate a lineage map (one afternoon, better features) or accept the gaps.
-4. **The "other" DNFs and unsure labels.** Disqualifications, withdrawals,
-   pre-2023 generic `Retired` rows (~250 rows, plus 234 unsure-flagged): exclude
-   from training, fold into DNF, or leave out of the positive class? These aren't
-   the kind of "didn't finish" you're trying to predict, so I'd exclude `other`
-   rows from the cause model and count them as DNF in the binary one — but it's
-   your call.
+4. **The remaining "other" DNFs and edge rows.** *(Partly resolved by the step-2
+   revision: disqualifications are now finishes, and never-started rows are out
+   of the modeling data.)* Still open: the 182 remaining "other" DNFs (mostly
+   the pre-2023 generic `Retired`, plus a few injury/safety rows) — exclude from
+   the cause model, or keep as their own class? And the ~25 cars that broke
+   before the start (`position_text="W"`, mechanical status, zero laps) — leave
+   them as mechanical DNFs, or treat them like never-started rows? My lean:
+   count all of them as DNF in the binary model, exclude "other"/"unknown" from
+   the cause model, and decide the broke-before-start rows with a sensitivity
+   check — but it's your call.
 5. **Evaluation design.** Time-based split is a given (train on the past, test on
    the future — random splits leak). Decide the boundary (e.g. train ≤2018 /
    validate 2019–21 / test 2022–24) and the metric that matters: with 23% DNFs
@@ -373,5 +457,6 @@ history features under-count established careers.
 
 *Everything here was generated by the code in `src/` — nothing was hand-edited.
 To reproduce from scratch: delete `data/` contents, then run
-`python -m src.build_dataset`, `python -m src.quality_report`,
-`python -m src.build_features`, and execute `notebooks/01_exploration.ipynb`.*
+`python -m src.build_dataset`, `python -m src.quality_report`, `python -m
+src.labels`, `python -m src.build_features`, and execute
+`notebooks/01_exploration.ipynb`.*

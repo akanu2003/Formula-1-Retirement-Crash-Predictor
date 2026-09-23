@@ -1,201 +1,201 @@
-season,round,race_date,circuit_id,driver_id,constructor_id,grid,driver_prior_starts,driver_prior_dnf_rate,constructor_prev_season_dnf_rate,circuit_hist_dnf_rate,dnf,dnf_category,label_unsure
-2000,1,2000-03-12,albert_park,michael_schumacher,ferrari,3,0,,,,False,,False
-2000,1,2000-03-12,albert_park,barrichello,ferrari,4,0,,,,False,,False
-2000,1,2000-03-12,albert_park,ralf_schumacher,williams,11,0,,,,False,,False
-2000,1,2000-03-12,albert_park,villeneuve,bar,8,0,,,,False,,False
-2000,1,2000-03-12,albert_park,fisichella,benetton,9,0,,,,False,,False
-2000,1,2000-03-12,albert_park,zonta,bar,16,0,,,,False,,False
-2000,1,2000-03-12,albert_park,wurz,benetton,14,0,,,,False,,False
-2000,1,2000-03-12,albert_park,gene,minardi,18,0,,,,False,,False
-2000,1,2000-03-12,albert_park,heidfeld,prost,15,0,,,,False,,False
-2000,1,2000-03-12,albert_park,salo,sauber,10,0,,,,True,other,False
-2000,1,2000-03-12,albert_park,button,williams,21,0,,,,True,mechanical,False
-2000,1,2000-03-12,albert_park,diniz,sauber,19,0,,,,True,mechanical,False
-2000,1,2000-03-12,albert_park,mazzacane,minardi,22,0,,,,True,mechanical,False
-2000,1,2000-03-12,albert_park,frentzen,jordan,5,0,,,,True,mechanical,False
-2000,1,2000-03-12,albert_park,trulli,jordan,6,0,,,,True,mechanical,False
-2000,1,2000-03-12,albert_park,alesi,prost,17,0,,,,True,mechanical,False
-2000,1,2000-03-12,albert_park,hakkinen,mclaren,1,0,,,,True,mechanical,False
-2000,1,2000-03-12,albert_park,verstappen,arrows,13,0,,,,True,mechanical,False
-2000,1,2000-03-12,albert_park,coulthard,mclaren,2,0,,,,True,mechanical,False
-2000,1,2000-03-12,albert_park,rosa,arrows,12,0,,,,True,mechanical,False
-2000,1,2000-03-12,albert_park,irvine,jaguar,7,0,,,,True,accident,False
-2000,1,2000-03-12,albert_park,herbert,jaguar,20,0,,,,True,mechanical,False
-2000,2,2000-03-26,interlagos,michael_schumacher,ferrari,3,1,0.0,,,False,,False
-2000,2,2000-03-26,interlagos,fisichella,benetton,5,1,0.0,,,False,,False
-2000,2,2000-03-26,interlagos,frentzen,jordan,7,1,1.0,,,False,,False
-2000,2,2000-03-26,interlagos,trulli,jordan,12,1,1.0,,,False,,False
-2000,2,2000-03-26,interlagos,ralf_schumacher,williams,11,1,0.0,,,False,,False
-2000,2,2000-03-26,interlagos,button,williams,9,1,1.0,,,False,,False
-2000,2,2000-03-26,interlagos,verstappen,arrows,14,1,1.0,,,False,,False
-2000,2,2000-03-26,interlagos,rosa,arrows,16,1,1.0,,,False,,False
-2000,2,2000-03-26,interlagos,zonta,bar,8,1,0.0,,,False,,False
-2000,2,2000-03-26,interlagos,mazzacane,minardi,20,1,1.0,,,False,,False
-2000,2,2000-03-26,interlagos,coulthard,mclaren,2,1,1.0,,,True,other,False
-2000,2,2000-03-26,interlagos,herbert,jaguar,17,1,1.0,,,True,mechanical,False
-2000,2,2000-03-26,interlagos,gene,minardi,18,1,0.0,,,True,mechanical,False
-2000,2,2000-03-26,interlagos,hakkinen,mclaren,1,1,1.0,,,True,mechanical,False
-2000,2,2000-03-26,interlagos,barrichello,ferrari,4,1,0.0,,,True,mechanical,False
-2000,2,2000-03-26,interlagos,irvine,jaguar,6,1,1.0,,,True,accident,False
-2000,2,2000-03-26,interlagos,villeneuve,bar,10,1,0.0,,,True,mechanical,False
-2000,2,2000-03-26,interlagos,alesi,prost,15,1,1.0,,,True,mechanical,False
-2000,2,2000-03-26,interlagos,heidfeld,prost,19,1,0.0,,,True,mechanical,False
-2000,2,2000-03-26,interlagos,wurz,benetton,13,1,0.0,,,True,mechanical,False
-2000,2,2000-03-26,interlagos,diniz,sauber,0,1,1.0,,,True,other,False
-2000,2,2000-03-26,interlagos,salo,sauber,0,1,1.0,,,True,other,False
-2000,3,2000-04-09,imola,michael_schumacher,ferrari,2,2,0.0,,,False,,False
-2000,3,2000-04-09,imola,hakkinen,mclaren,1,2,1.0,,,False,,False
-2000,3,2000-04-09,imola,coulthard,mclaren,3,2,1.0,,,False,,False
-2000,3,2000-04-09,imola,barrichello,ferrari,4,2,0.5,,,False,,False
-2000,3,2000-04-09,imola,villeneuve,bar,9,2,0.5,,,False,,False
-2000,3,2000-04-09,imola,salo,sauber,12,2,1.0,,,False,,False
-2000,3,2000-04-09,imola,irvine,jaguar,7,2,1.0,,,False,,False
-2000,3,2000-04-09,imola,diniz,sauber,10,2,1.0,,,False,,False
-2000,3,2000-04-09,imola,wurz,benetton,11,2,0.5,,,False,,False
-2000,3,2000-04-09,imola,herbert,jaguar,17,2,1.0,,,False,,False
-2000,3,2000-04-09,imola,fisichella,benetton,19,2,0.0,,,False,,False
-2000,3,2000-04-09,imola,zonta,bar,14,2,0.0,,,False,,False
-2000,3,2000-04-09,imola,mazzacane,minardi,20,2,0.5,,,False,,False
-2000,3,2000-04-09,imola,verstappen,arrows,16,2,0.5,,,False,,False
-2000,3,2000-04-09,imola,trulli,jordan,8,2,0.5,,,True,mechanical,False
-2000,3,2000-04-09,imola,rosa,arrows,13,2,0.5,,,True,accident,False
-2000,3,2000-04-09,imola,ralf_schumacher,williams,5,2,0.0,,,True,mechanical,False
-2000,3,2000-04-09,imola,alesi,prost,15,2,1.0,,,True,mechanical,False
-2000,3,2000-04-09,imola,heidfeld,prost,22,2,0.5,,,True,mechanical,False
-2000,3,2000-04-09,imola,button,williams,18,2,0.5,,,True,mechanical,False
-2000,3,2000-04-09,imola,gene,minardi,21,2,0.5,,,True,accident,False
-2000,3,2000-04-09,imola,frentzen,jordan,6,2,0.5,,,True,mechanical,False
-2000,4,2000-04-23,silverstone,coulthard,mclaren,4,3,0.6666666666666666,,,False,,False
-2000,4,2000-04-23,silverstone,hakkinen,mclaren,3,3,0.6666666666666666,,,False,,False
-2000,4,2000-04-23,silverstone,michael_schumacher,ferrari,5,3,0.0,,,False,,False
-2000,4,2000-04-23,silverstone,ralf_schumacher,williams,7,3,0.3333333333333333,,,False,,False
-2000,4,2000-04-23,silverstone,button,williams,6,3,0.6666666666666666,,,False,,False
-2000,4,2000-04-23,silverstone,trulli,jordan,11,3,0.6666666666666666,,,False,,False
-2000,4,2000-04-23,silverstone,fisichella,benetton,12,3,0.0,,,False,,False
-2000,4,2000-04-23,silverstone,salo,sauber,18,3,0.6666666666666666,,,False,,False
-2000,4,2000-04-23,silverstone,wurz,benetton,20,3,0.3333333333333333,,,False,,False
-2000,4,2000-04-23,silverstone,alesi,prost,15,3,1.0,,,False,,False
-2000,4,2000-04-23,silverstone,diniz,sauber,13,3,0.6666666666666666,,,False,,False
-2000,4,2000-04-23,silverstone,herbert,jaguar,14,3,0.6666666666666666,,,False,,False
-2000,4,2000-04-23,silverstone,irvine,jaguar,9,3,0.6666666666666666,,,False,,False
-2000,4,2000-04-23,silverstone,gene,minardi,21,3,0.6666666666666666,,,False,,False
-2000,4,2000-04-23,silverstone,mazzacane,minardi,22,3,0.3333333333333333,,,False,,False
-2000,4,2000-04-23,silverstone,villeneuve,bar,10,3,0.3333333333333333,,,False,,False
-2000,4,2000-04-23,silverstone,frentzen,jordan,2,3,0.6666666666666666,,,False,,False
-2000,4,2000-04-23,silverstone,heidfeld,prost,17,3,0.6666666666666666,,,True,mechanical,False
-2000,4,2000-04-23,silverstone,zonta,bar,16,3,0.0,,,True,accident,False
-2000,4,2000-04-23,silverstone,barrichello,ferrari,1,3,0.3333333333333333,,,True,mechanical,False
-2000,4,2000-04-23,silverstone,rosa,arrows,19,3,0.6666666666666666,,,True,mechanical,False
-2000,4,2000-04-23,silverstone,verstappen,arrows,8,3,0.3333333333333333,,,True,mechanical,False
-2000,5,2000-05-07,catalunya,hakkinen,mclaren,2,4,0.5,,,False,,False
-2000,5,2000-05-07,catalunya,coulthard,mclaren,4,4,0.5,,,False,,False
-2000,5,2000-05-07,catalunya,barrichello,ferrari,3,4,0.5,,,False,,False
-2000,5,2000-05-07,catalunya,ralf_schumacher,williams,5,4,0.25,,,False,,False
-2000,5,2000-05-07,catalunya,michael_schumacher,ferrari,1,4,0.0,,,False,,False
-2000,5,2000-05-07,catalunya,frentzen,jordan,8,4,0.5,,,False,,False
-2000,5,2000-05-07,catalunya,salo,sauber,12,4,0.5,,,False,,False
-2000,5,2000-05-07,catalunya,zonta,bar,16,4,0.25,,,False,,False
-2000,5,2000-05-07,catalunya,fisichella,benetton,13,4,0.0,,,False,,False
-2000,5,2000-05-07,catalunya,wurz,benetton,18,4,0.25,,,False,,False
-2000,5,2000-05-07,catalunya,irvine,jaguar,9,4,0.5,,,False,,False
-2000,5,2000-05-07,catalunya,trulli,jordan,7,4,0.5,,,False,,False
-2000,5,2000-05-07,catalunya,herbert,jaguar,14,4,0.5,,,False,,False
-2000,5,2000-05-07,catalunya,gene,minardi,20,4,0.5,,,False,,False
-2000,5,2000-05-07,catalunya,mazzacane,minardi,21,4,0.25,,,False,,False
-2000,5,2000-05-07,catalunya,heidfeld,prost,19,4,0.75,,,False,,False
-2000,5,2000-05-07,catalunya,button,williams,10,4,0.5,,,True,mechanical,False
-2000,5,2000-05-07,catalunya,verstappen,arrows,11,4,0.5,,,True,mechanical,False
-2000,5,2000-05-07,catalunya,villeneuve,bar,6,4,0.25,,,True,mechanical,False
-2000,5,2000-05-07,catalunya,alesi,prost,17,4,0.75,,,True,accident,False
-2000,5,2000-05-07,catalunya,rosa,arrows,22,4,0.75,,,True,accident,False
-2000,5,2000-05-07,catalunya,diniz,sauber,15,4,0.5,,,True,accident,False
-2000,6,2000-05-21,nurburgring,michael_schumacher,ferrari,2,5,0.0,,,False,,False
-2000,6,2000-05-21,nurburgring,hakkinen,mclaren,3,5,0.4,,,False,,False
-2000,6,2000-05-21,nurburgring,coulthard,mclaren,1,5,0.4,,,False,,False
-2000,6,2000-05-21,nurburgring,barrichello,ferrari,4,5,0.4,,,False,,False
-2000,6,2000-05-21,nurburgring,fisichella,benetton,7,5,0.0,,,False,,False
-2000,6,2000-05-21,nurburgring,rosa,arrows,12,5,0.8,,,False,,False
-2000,6,2000-05-21,nurburgring,diniz,sauber,15,5,0.6,,,False,,False
-2000,6,2000-05-21,nurburgring,mazzacane,minardi,21,5,0.2,,,False,,False
-2000,6,2000-05-21,nurburgring,alesi,prost,17,5,0.8,,,False,,False
-2000,6,2000-05-21,nurburgring,button,williams,11,5,0.6,,,True,mechanical,False
-2000,6,2000-05-21,nurburgring,herbert,jaguar,16,5,0.4,,,True,accident,False
-2000,6,2000-05-21,nurburgring,wurz,benetton,14,5,0.2,,,True,accident,False
-2000,6,2000-05-21,nurburgring,zonta,bar,18,5,0.2,,,True,accident,False
-2000,6,2000-05-21,nurburgring,gene,minardi,20,5,0.4,,,True,mechanical,False
-2000,6,2000-05-21,nurburgring,villeneuve,bar,9,5,0.4,,,True,mechanical,False
-2000,6,2000-05-21,nurburgring,irvine,jaguar,8,5,0.4,,,True,accident,False
-2000,6,2000-05-21,nurburgring,verstappen,arrows,13,5,0.6,,,True,accident,False
-2000,6,2000-05-21,nurburgring,ralf_schumacher,williams,5,5,0.2,,,True,accident,False
-2000,6,2000-05-21,nurburgring,salo,sauber,19,5,0.4,,,True,mechanical,False
-2000,6,2000-05-21,nurburgring,frentzen,jordan,10,5,0.4,,,True,mechanical,False
-2000,6,2000-05-21,nurburgring,trulli,jordan,6,5,0.4,,,True,accident,False
-2000,7,2000-06-04,monaco,coulthard,mclaren,3,6,0.3333333333333333,,,False,,False
-2000,7,2000-06-04,monaco,barrichello,ferrari,6,6,0.3333333333333333,,,False,,False
-2000,7,2000-06-04,monaco,fisichella,benetton,8,6,0.0,,,False,,False
-2000,7,2000-06-04,monaco,irvine,jaguar,10,6,0.5,,,False,,False
-2000,7,2000-06-04,monaco,salo,sauber,13,6,0.5,,,False,,False
-2000,7,2000-06-04,monaco,hakkinen,mclaren,5,6,0.3333333333333333,,,False,,False
-2000,7,2000-06-04,monaco,villeneuve,bar,17,6,0.5,,,False,,False
-2000,7,2000-06-04,monaco,heidfeld,prost,18,5,0.6,,,False,,False
-2000,7,2000-06-04,monaco,herbert,jaguar,11,6,0.5,,,False,,False
-2000,7,2000-06-04,monaco,frentzen,jordan,4,6,0.5,,,True,accident,False
-2000,7,2000-06-04,monaco,verstappen,arrows,15,6,0.6666666666666666,,,True,accident,False
-2000,7,2000-06-04,monaco,michael_schumacher,ferrari,1,6,0.0,,,True,mechanical,False
-2000,7,2000-06-04,monaco,zonta,bar,20,6,0.3333333333333333,,,True,accident,False
-2000,7,2000-06-04,monaco,ralf_schumacher,williams,9,6,0.3333333333333333,,,True,accident,False
-2000,7,2000-06-04,monaco,trulli,jordan,2,6,0.5,,,True,mechanical,False
-2000,7,2000-06-04,monaco,diniz,sauber,19,6,0.5,,,True,accident,False
-2000,7,2000-06-04,monaco,alesi,prost,7,6,0.6666666666666666,,,True,mechanical,False
-2000,7,2000-06-04,monaco,mazzacane,minardi,22,6,0.16666666666666666,,,True,accident,False
-2000,7,2000-06-04,monaco,gene,minardi,21,6,0.5,,,True,mechanical,False
-2000,7,2000-06-04,monaco,wurz,benetton,12,6,0.3333333333333333,,,True,accident,False
-2000,7,2000-06-04,monaco,button,williams,14,6,0.6666666666666666,,,True,mechanical,False
-2000,7,2000-06-04,monaco,rosa,arrows,16,6,0.6666666666666666,,,True,other,False
-2000,8,2000-06-18,villeneuve,michael_schumacher,ferrari,1,7,0.14285714285714285,,,False,,False
-2000,8,2000-06-18,villeneuve,barrichello,ferrari,3,7,0.2857142857142857,,,False,,False
-2000,8,2000-06-18,villeneuve,fisichella,benetton,10,7,0.0,,,False,,False
-2000,8,2000-06-18,villeneuve,hakkinen,mclaren,4,7,0.2857142857142857,,,False,,False
-2000,8,2000-06-18,villeneuve,verstappen,arrows,13,7,0.7142857142857143,,,False,,False
-2000,8,2000-06-18,villeneuve,trulli,jordan,7,7,0.5714285714285714,,,False,,False
-2000,8,2000-06-18,villeneuve,coulthard,mclaren,2,7,0.2857142857142857,,,False,,False
-2000,8,2000-06-18,villeneuve,zonta,bar,8,7,0.42857142857142855,,,False,,False
-2000,8,2000-06-18,villeneuve,wurz,benetton,14,7,0.42857142857142855,,,False,,False
-2000,8,2000-06-18,villeneuve,diniz,sauber,19,7,0.5714285714285714,,,False,,False
-2000,8,2000-06-18,villeneuve,button,williams,18,7,0.7142857142857143,,,False,,False
-2000,8,2000-06-18,villeneuve,mazzacane,minardi,22,7,0.2857142857142857,,,False,,False
-2000,8,2000-06-18,villeneuve,irvine,jaguar,16,7,0.42857142857142855,,,False,,False
-2000,8,2000-06-18,villeneuve,ralf_schumacher,williams,12,7,0.42857142857142855,,,True,accident,False
-2000,8,2000-06-18,villeneuve,villeneuve,bar,6,7,0.42857142857142855,,,True,accident,False
-2000,8,2000-06-18,villeneuve,gene,minardi,20,7,0.5714285714285714,,,True,accident,False
-2000,8,2000-06-18,villeneuve,rosa,arrows,9,7,0.7142857142857143,,,True,accident,False
-2000,8,2000-06-18,villeneuve,salo,sauber,15,7,0.42857142857142855,,,True,mechanical,False
-2000,8,2000-06-18,villeneuve,alesi,prost,17,7,0.7142857142857143,,,True,mechanical,False
-2000,8,2000-06-18,villeneuve,heidfeld,prost,21,6,0.5,,,True,mechanical,False
-2000,8,2000-06-18,villeneuve,frentzen,jordan,5,7,0.5714285714285714,,,True,mechanical,False
-2000,8,2000-06-18,villeneuve,herbert,jaguar,11,7,0.42857142857142855,,,True,mechanical,False
-2000,9,2000-07-02,magny_cours,coulthard,mclaren,2,8,0.25,,,False,,False
-2000,9,2000-07-02,magny_cours,hakkinen,mclaren,4,8,0.25,,,False,,False
-2000,9,2000-07-02,magny_cours,barrichello,ferrari,3,8,0.25,,,False,,False
-2000,9,2000-07-02,magny_cours,villeneuve,bar,7,8,0.5,,,False,,False
-2000,9,2000-07-02,magny_cours,ralf_schumacher,williams,5,8,0.5,,,False,,False
-2000,9,2000-07-02,magny_cours,trulli,jordan,9,8,0.5,,,False,,False
-2000,9,2000-07-02,magny_cours,frentzen,jordan,8,8,0.625,,,False,,False
-2000,9,2000-07-02,magny_cours,button,williams,10,8,0.625,,,False,,False
-2000,9,2000-07-02,magny_cours,fisichella,benetton,14,8,0.0,,,False,,False
-2000,9,2000-07-02,magny_cours,salo,sauber,12,8,0.5,,,False,,False
-2000,9,2000-07-02,magny_cours,diniz,sauber,15,8,0.5,,,False,,False
-2000,9,2000-07-02,magny_cours,heidfeld,prost,16,7,0.5714285714285714,,,False,,False
-2000,9,2000-07-02,magny_cours,irvine,jaguar,6,8,0.375,,,False,,False
-2000,9,2000-07-02,magny_cours,alesi,prost,18,8,0.75,,,False,,False
-2000,9,2000-07-02,magny_cours,gene,minardi,21,8,0.625,,,False,,False
-2000,9,2000-07-02,magny_cours,michael_schumacher,ferrari,1,8,0.125,,,True,mechanical,False
-2000,9,2000-07-02,magny_cours,rosa,arrows,13,8,0.75,,,True,mechanical,False
-2000,9,2000-07-02,magny_cours,wurz,benetton,17,8,0.375,,,True,accident,False
-2000,9,2000-07-02,magny_cours,mazzacane,minardi,22,8,0.25,,,True,accident,False
-2000,9,2000-07-02,magny_cours,verstappen,arrows,20,8,0.625,,,True,mechanical,False
-2000,9,2000-07-02,magny_cours,herbert,jaguar,11,8,0.5,,,True,mechanical,False
-2000,9,2000-07-02,magny_cours,zonta,bar,19,8,0.375,,,True,accident,False
-2000,10,2000-07-16,red_bull_ring,hakkinen,mclaren,1,9,0.2222222222222222,,,False,,False
-2000,10,2000-07-16,red_bull_ring,coulthard,mclaren,2,9,0.2222222222222222,,,False,,False
-2000,10,2000-07-16,red_bull_ring,barrichello,ferrari,3,9,0.2222222222222222,,,False,,False
+season,round,race_date,circuit_id,driver_id,constructor_id,grid,driver_prior_starts,driver_prior_dnf_rate,constructor_prev_season_dnf_rate,circuit_hist_dnf_rate,dnf,dnf_category,label_unsure,disqualified,status,position_text
+2000,1,2000-03-12,albert_park,michael_schumacher,ferrari,3,0,,,,False,,False,False,Finished,1
+2000,1,2000-03-12,albert_park,barrichello,ferrari,4,0,,,,False,,False,False,Finished,2
+2000,1,2000-03-12,albert_park,ralf_schumacher,williams,11,0,,,,False,,False,False,Finished,3
+2000,1,2000-03-12,albert_park,villeneuve,bar,8,0,,,,False,,False,False,Finished,4
+2000,1,2000-03-12,albert_park,fisichella,benetton,9,0,,,,False,,False,False,Finished,5
+2000,1,2000-03-12,albert_park,zonta,bar,16,0,,,,False,,False,False,Finished,6
+2000,1,2000-03-12,albert_park,wurz,benetton,14,0,,,,False,,False,False,Finished,7
+2000,1,2000-03-12,albert_park,gene,minardi,18,0,,,,False,,False,False,+1 Lap,8
+2000,1,2000-03-12,albert_park,heidfeld,prost,15,0,,,,False,,False,False,+2 Laps,9
+2000,1,2000-03-12,albert_park,salo,sauber,10,0,,,,False,,False,True,Disqualified,D
+2000,1,2000-03-12,albert_park,button,williams,21,0,,,,True,mechanical,False,False,Engine,R
+2000,1,2000-03-12,albert_park,diniz,sauber,19,0,,,,True,mechanical,False,False,Transmission,R
+2000,1,2000-03-12,albert_park,mazzacane,minardi,22,0,,,,True,mechanical,False,False,Gearbox,R
+2000,1,2000-03-12,albert_park,frentzen,jordan,5,0,,,,True,mechanical,False,False,Hydraulics,R
+2000,1,2000-03-12,albert_park,trulli,jordan,6,0,,,,True,mechanical,False,False,Engine,R
+2000,1,2000-03-12,albert_park,alesi,prost,17,0,,,,True,mechanical,False,False,Hydraulics,R
+2000,1,2000-03-12,albert_park,hakkinen,mclaren,1,0,,,,True,mechanical,False,False,Engine,R
+2000,1,2000-03-12,albert_park,verstappen,arrows,13,0,,,,True,mechanical,False,False,Suspension,R
+2000,1,2000-03-12,albert_park,coulthard,mclaren,2,0,,,,True,mechanical,False,False,Engine,R
+2000,1,2000-03-12,albert_park,rosa,arrows,12,0,,,,True,mechanical,False,False,Suspension,R
+2000,1,2000-03-12,albert_park,irvine,jaguar,7,0,,,,True,accident,False,False,Spun off,R
+2000,1,2000-03-12,albert_park,herbert,jaguar,20,0,,,,True,mechanical,False,False,Clutch,R
+2000,2,2000-03-26,interlagos,michael_schumacher,ferrari,3,1,0.0,,,False,,False,False,Finished,1
+2000,2,2000-03-26,interlagos,fisichella,benetton,5,1,0.0,,,False,,False,False,Finished,2
+2000,2,2000-03-26,interlagos,frentzen,jordan,7,1,1.0,,,False,,False,False,Finished,3
+2000,2,2000-03-26,interlagos,trulli,jordan,12,1,1.0,,,False,,False,False,Finished,4
+2000,2,2000-03-26,interlagos,ralf_schumacher,williams,11,1,0.0,,,False,,False,False,+1 Lap,5
+2000,2,2000-03-26,interlagos,button,williams,9,1,1.0,,,False,,False,False,+1 Lap,6
+2000,2,2000-03-26,interlagos,verstappen,arrows,14,1,1.0,,,False,,False,False,+1 Lap,7
+2000,2,2000-03-26,interlagos,rosa,arrows,16,1,1.0,,,False,,False,False,+1 Lap,8
+2000,2,2000-03-26,interlagos,zonta,bar,8,1,0.0,,,False,,False,False,+2 Laps,9
+2000,2,2000-03-26,interlagos,mazzacane,minardi,20,1,1.0,,,False,,False,False,+2 Laps,10
+2000,2,2000-03-26,interlagos,coulthard,mclaren,2,1,1.0,,,False,,False,True,Disqualified,D
+2000,2,2000-03-26,interlagos,herbert,jaguar,17,1,1.0,,,True,mechanical,False,False,Gearbox,R
+2000,2,2000-03-26,interlagos,gene,minardi,18,1,0.0,,,True,mechanical,False,False,Engine,R
+2000,2,2000-03-26,interlagos,hakkinen,mclaren,1,1,1.0,,,True,mechanical,False,False,Oil pressure,R
+2000,2,2000-03-26,interlagos,barrichello,ferrari,4,1,0.0,,,True,mechanical,False,False,Hydraulics,R
+2000,2,2000-03-26,interlagos,irvine,jaguar,6,1,1.0,,,True,accident,False,False,Spun off,R
+2000,2,2000-03-26,interlagos,villeneuve,bar,10,1,0.0,,,True,mechanical,False,False,Gearbox,R
+2000,2,2000-03-26,interlagos,alesi,prost,15,1,1.0,,,True,mechanical,False,False,Electrical,R
+2000,2,2000-03-26,interlagos,heidfeld,prost,19,1,0.0,,,True,mechanical,False,False,Engine,R
+2000,2,2000-03-26,interlagos,wurz,benetton,13,1,0.0,,,True,mechanical,False,False,Engine,R
+2000,2,2000-03-26,interlagos,diniz,sauber,0,1,1.0,,,True,other,False,False,Safety concerns,W
+2000,2,2000-03-26,interlagos,salo,sauber,0,1,0.0,,,True,other,False,False,Safety concerns,W
+2000,3,2000-04-09,imola,michael_schumacher,ferrari,2,2,0.0,,,False,,False,False,Finished,1
+2000,3,2000-04-09,imola,hakkinen,mclaren,1,2,1.0,,,False,,False,False,Finished,2
+2000,3,2000-04-09,imola,coulthard,mclaren,3,2,0.5,,,False,,False,False,Finished,3
+2000,3,2000-04-09,imola,barrichello,ferrari,4,2,0.5,,,False,,False,False,Finished,4
+2000,3,2000-04-09,imola,villeneuve,bar,9,2,0.5,,,False,,False,False,+1 Lap,5
+2000,3,2000-04-09,imola,salo,sauber,12,2,0.5,,,False,,False,False,+1 Lap,6
+2000,3,2000-04-09,imola,irvine,jaguar,7,2,1.0,,,False,,False,False,+1 Lap,7
+2000,3,2000-04-09,imola,diniz,sauber,10,2,1.0,,,False,,False,False,+1 Lap,8
+2000,3,2000-04-09,imola,wurz,benetton,11,2,0.5,,,False,,False,False,+1 Lap,9
+2000,3,2000-04-09,imola,herbert,jaguar,17,2,1.0,,,False,,False,False,+1 Lap,10
+2000,3,2000-04-09,imola,fisichella,benetton,19,2,0.0,,,False,,False,False,+1 Lap,11
+2000,3,2000-04-09,imola,zonta,bar,14,2,0.0,,,False,,False,False,+1 Lap,12
+2000,3,2000-04-09,imola,mazzacane,minardi,20,2,0.5,,,False,,False,False,+2 Laps,13
+2000,3,2000-04-09,imola,verstappen,arrows,16,2,0.5,,,False,,False,False,+3 Laps,14
+2000,3,2000-04-09,imola,trulli,jordan,8,2,0.5,,,True,mechanical,False,False,Gearbox,15
+2000,3,2000-04-09,imola,rosa,arrows,13,2,0.5,,,True,accident,False,False,Spun off,R
+2000,3,2000-04-09,imola,ralf_schumacher,williams,5,2,0.0,,,True,mechanical,False,False,Fuel system,R
+2000,3,2000-04-09,imola,alesi,prost,15,2,1.0,,,True,mechanical,False,False,Hydraulics,R
+2000,3,2000-04-09,imola,heidfeld,prost,22,2,0.5,,,True,mechanical,False,False,Hydraulics,R
+2000,3,2000-04-09,imola,button,williams,18,2,0.5,,,True,mechanical,False,False,Engine,R
+2000,3,2000-04-09,imola,gene,minardi,21,2,0.5,,,True,accident,False,False,Spun off,R
+2000,3,2000-04-09,imola,frentzen,jordan,6,2,0.5,,,True,mechanical,False,False,Gearbox,R
+2000,4,2000-04-23,silverstone,coulthard,mclaren,4,3,0.3333333333333333,,,False,,False,False,Finished,1
+2000,4,2000-04-23,silverstone,hakkinen,mclaren,3,3,0.6666666666666666,,,False,,False,False,Finished,2
+2000,4,2000-04-23,silverstone,michael_schumacher,ferrari,5,3,0.0,,,False,,False,False,Finished,3
+2000,4,2000-04-23,silverstone,ralf_schumacher,williams,7,3,0.3333333333333333,,,False,,False,False,Finished,4
+2000,4,2000-04-23,silverstone,button,williams,6,3,0.6666666666666666,,,False,,False,False,Finished,5
+2000,4,2000-04-23,silverstone,trulli,jordan,11,3,0.6666666666666666,,,False,,False,False,Finished,6
+2000,4,2000-04-23,silverstone,fisichella,benetton,12,3,0.0,,,False,,False,False,+1 Lap,7
+2000,4,2000-04-23,silverstone,salo,sauber,18,3,0.3333333333333333,,,False,,False,False,+1 Lap,8
+2000,4,2000-04-23,silverstone,wurz,benetton,20,3,0.3333333333333333,,,False,,False,False,+1 Lap,9
+2000,4,2000-04-23,silverstone,alesi,prost,15,3,1.0,,,False,,False,False,+1 Lap,10
+2000,4,2000-04-23,silverstone,diniz,sauber,13,3,0.6666666666666666,,,False,,False,False,+1 Lap,11
+2000,4,2000-04-23,silverstone,herbert,jaguar,14,3,0.6666666666666666,,,False,,False,False,+1 Lap,12
+2000,4,2000-04-23,silverstone,irvine,jaguar,9,3,0.6666666666666666,,,False,,False,False,+1 Lap,13
+2000,4,2000-04-23,silverstone,gene,minardi,21,3,0.6666666666666666,,,False,,False,False,+1 Lap,14
+2000,4,2000-04-23,silverstone,mazzacane,minardi,22,3,0.3333333333333333,,,False,,False,False,+1 Lap,15
+2000,4,2000-04-23,silverstone,villeneuve,bar,10,3,0.3333333333333333,,,False,,False,False,+4 Laps,16
+2000,4,2000-04-23,silverstone,frentzen,jordan,2,3,0.6666666666666666,,,False,,False,False,+6 Laps,17
+2000,4,2000-04-23,silverstone,heidfeld,prost,17,3,0.6666666666666666,,,True,mechanical,False,False,Engine,R
+2000,4,2000-04-23,silverstone,zonta,bar,16,3,0.0,,,True,accident,False,False,Spun off,R
+2000,4,2000-04-23,silverstone,barrichello,ferrari,1,3,0.3333333333333333,,,True,mechanical,False,False,Hydraulics,R
+2000,4,2000-04-23,silverstone,rosa,arrows,19,3,0.6666666666666666,,,True,mechanical,False,False,Electrical,R
+2000,4,2000-04-23,silverstone,verstappen,arrows,8,3,0.3333333333333333,,,True,mechanical,False,False,Electrical,R
+2000,5,2000-05-07,catalunya,hakkinen,mclaren,2,4,0.5,,,False,,False,False,Finished,1
+2000,5,2000-05-07,catalunya,coulthard,mclaren,4,4,0.25,,,False,,False,False,Finished,2
+2000,5,2000-05-07,catalunya,barrichello,ferrari,3,4,0.5,,,False,,False,False,Finished,3
+2000,5,2000-05-07,catalunya,ralf_schumacher,williams,5,4,0.25,,,False,,False,False,Finished,4
+2000,5,2000-05-07,catalunya,michael_schumacher,ferrari,1,4,0.0,,,False,,False,False,Finished,5
+2000,5,2000-05-07,catalunya,frentzen,jordan,8,4,0.5,,,False,,False,False,Finished,6
+2000,5,2000-05-07,catalunya,salo,sauber,12,4,0.25,,,False,,False,False,+1 Lap,7
+2000,5,2000-05-07,catalunya,zonta,bar,16,4,0.25,,,False,,False,False,+1 Lap,8
+2000,5,2000-05-07,catalunya,fisichella,benetton,13,4,0.0,,,False,,False,False,+1 Lap,9
+2000,5,2000-05-07,catalunya,wurz,benetton,18,4,0.25,,,False,,False,False,+1 Lap,10
+2000,5,2000-05-07,catalunya,irvine,jaguar,9,4,0.5,,,False,,False,False,+1 Lap,11
+2000,5,2000-05-07,catalunya,trulli,jordan,7,4,0.5,,,False,,False,False,+1 Lap,12
+2000,5,2000-05-07,catalunya,herbert,jaguar,14,4,0.5,,,False,,False,False,+1 Lap,13
+2000,5,2000-05-07,catalunya,gene,minardi,20,4,0.5,,,False,,False,False,+2 Laps,14
+2000,5,2000-05-07,catalunya,mazzacane,minardi,21,4,0.25,,,False,,False,False,+2 Laps,15
+2000,5,2000-05-07,catalunya,heidfeld,prost,19,4,0.75,,,False,,False,False,+3 Laps,16
+2000,5,2000-05-07,catalunya,button,williams,10,4,0.5,,,True,mechanical,False,False,Engine,17
+2000,5,2000-05-07,catalunya,verstappen,arrows,11,4,0.5,,,True,mechanical,False,False,Gearbox,R
+2000,5,2000-05-07,catalunya,villeneuve,bar,6,4,0.25,,,True,mechanical,False,False,Hydraulics,R
+2000,5,2000-05-07,catalunya,alesi,prost,17,4,0.75,,,True,accident,False,False,Collision,R
+2000,5,2000-05-07,catalunya,rosa,arrows,22,4,0.75,,,True,accident,False,False,Collision,R
+2000,5,2000-05-07,catalunya,diniz,sauber,15,4,0.5,,,True,accident,False,False,Spun off,R
+2000,6,2000-05-21,nurburgring,michael_schumacher,ferrari,2,5,0.0,,,False,,False,False,Finished,1
+2000,6,2000-05-21,nurburgring,hakkinen,mclaren,3,5,0.4,,,False,,False,False,Finished,2
+2000,6,2000-05-21,nurburgring,coulthard,mclaren,1,5,0.2,,,False,,False,False,+1 Lap,3
+2000,6,2000-05-21,nurburgring,barrichello,ferrari,4,5,0.4,,,False,,False,False,+1 Lap,4
+2000,6,2000-05-21,nurburgring,fisichella,benetton,7,5,0.0,,,False,,False,False,+1 Lap,5
+2000,6,2000-05-21,nurburgring,rosa,arrows,12,5,0.8,,,False,,False,False,+1 Lap,6
+2000,6,2000-05-21,nurburgring,diniz,sauber,15,5,0.6,,,False,,False,False,+2 Laps,7
+2000,6,2000-05-21,nurburgring,mazzacane,minardi,21,5,0.2,,,False,,False,False,+2 Laps,8
+2000,6,2000-05-21,nurburgring,alesi,prost,17,5,0.8,,,False,,False,False,+2 Laps,9
+2000,6,2000-05-21,nurburgring,button,williams,11,5,0.6,,,True,mechanical,False,False,Electrical,10
+2000,6,2000-05-21,nurburgring,herbert,jaguar,16,5,0.4,,,True,accident,False,False,Collision,11
+2000,6,2000-05-21,nurburgring,wurz,benetton,14,5,0.2,,,True,accident,False,False,Collision,12
+2000,6,2000-05-21,nurburgring,zonta,bar,18,5,0.2,,,True,accident,False,False,Spun off,R
+2000,6,2000-05-21,nurburgring,gene,minardi,20,5,0.4,,,True,mechanical,False,False,Throttle,R
+2000,6,2000-05-21,nurburgring,villeneuve,bar,9,5,0.4,,,True,mechanical,False,False,Engine,R
+2000,6,2000-05-21,nurburgring,irvine,jaguar,8,5,0.4,,,True,accident,False,False,Collision,R
+2000,6,2000-05-21,nurburgring,verstappen,arrows,13,5,0.6,,,True,accident,False,False,Spun off,R
+2000,6,2000-05-21,nurburgring,ralf_schumacher,williams,5,5,0.2,,,True,accident,False,False,Collision,R
+2000,6,2000-05-21,nurburgring,salo,sauber,19,5,0.2,,,True,mechanical,False,False,Halfshaft,R
+2000,6,2000-05-21,nurburgring,frentzen,jordan,10,5,0.4,,,True,mechanical,False,False,Engine,R
+2000,6,2000-05-21,nurburgring,trulli,jordan,6,5,0.4,,,True,accident,False,False,Collision,R
+2000,7,2000-06-04,monaco,coulthard,mclaren,3,6,0.16666666666666666,,,False,,False,False,Finished,1
+2000,7,2000-06-04,monaco,barrichello,ferrari,6,6,0.3333333333333333,,,False,,False,False,Finished,2
+2000,7,2000-06-04,monaco,fisichella,benetton,8,6,0.0,,,False,,False,False,Finished,3
+2000,7,2000-06-04,monaco,irvine,jaguar,10,6,0.5,,,False,,False,False,Finished,4
+2000,7,2000-06-04,monaco,salo,sauber,13,6,0.3333333333333333,,,False,,False,False,Finished,5
+2000,7,2000-06-04,monaco,hakkinen,mclaren,5,6,0.3333333333333333,,,False,,False,False,+1 Lap,6
+2000,7,2000-06-04,monaco,villeneuve,bar,17,6,0.5,,,False,,False,False,+1 Lap,7
+2000,7,2000-06-04,monaco,heidfeld,prost,18,5,0.6,,,False,,False,False,+1 Lap,8
+2000,7,2000-06-04,monaco,herbert,jaguar,11,6,0.5,,,False,,False,False,+2 Laps,9
+2000,7,2000-06-04,monaco,frentzen,jordan,4,6,0.5,,,True,accident,False,False,Spun off,10
+2000,7,2000-06-04,monaco,verstappen,arrows,15,6,0.6666666666666666,,,True,accident,False,False,Spun off,R
+2000,7,2000-06-04,monaco,michael_schumacher,ferrari,1,6,0.0,,,True,mechanical,False,False,Suspension,R
+2000,7,2000-06-04,monaco,zonta,bar,20,6,0.3333333333333333,,,True,accident,False,False,Spun off,R
+2000,7,2000-06-04,monaco,ralf_schumacher,williams,9,6,0.3333333333333333,,,True,accident,False,False,Spun off,R
+2000,7,2000-06-04,monaco,trulli,jordan,2,6,0.5,,,True,mechanical,False,False,Gearbox,R
+2000,7,2000-06-04,monaco,diniz,sauber,19,6,0.5,,,True,accident,False,False,Spun off,R
+2000,7,2000-06-04,monaco,alesi,prost,7,6,0.6666666666666666,,,True,mechanical,False,False,Transmission,R
+2000,7,2000-06-04,monaco,mazzacane,minardi,22,6,0.16666666666666666,,,True,accident,False,False,Spun off,R
+2000,7,2000-06-04,monaco,gene,minardi,21,6,0.5,,,True,mechanical,False,False,Gearbox,R
+2000,7,2000-06-04,monaco,wurz,benetton,12,6,0.3333333333333333,,,True,accident,False,False,Spun off,R
+2000,7,2000-06-04,monaco,button,williams,14,6,0.6666666666666666,,,True,mechanical,False,False,Engine,R
+2000,8,2000-06-18,villeneuve,michael_schumacher,ferrari,1,7,0.14285714285714285,,,False,,False,False,Finished,1
+2000,8,2000-06-18,villeneuve,barrichello,ferrari,3,7,0.2857142857142857,,,False,,False,False,Finished,2
+2000,8,2000-06-18,villeneuve,fisichella,benetton,10,7,0.0,,,False,,False,False,Finished,3
+2000,8,2000-06-18,villeneuve,hakkinen,mclaren,4,7,0.2857142857142857,,,False,,False,False,Finished,4
+2000,8,2000-06-18,villeneuve,verstappen,arrows,13,7,0.7142857142857143,,,False,,False,False,Finished,5
+2000,8,2000-06-18,villeneuve,trulli,jordan,7,7,0.5714285714285714,,,False,,False,False,Finished,6
+2000,8,2000-06-18,villeneuve,coulthard,mclaren,2,7,0.14285714285714285,,,False,,False,False,Finished,7
+2000,8,2000-06-18,villeneuve,zonta,bar,8,7,0.42857142857142855,,,False,,False,False,Finished,8
+2000,8,2000-06-18,villeneuve,wurz,benetton,14,7,0.42857142857142855,,,False,,False,False,Finished,9
+2000,8,2000-06-18,villeneuve,diniz,sauber,19,7,0.5714285714285714,,,False,,False,False,Finished,10
+2000,8,2000-06-18,villeneuve,button,williams,18,7,0.7142857142857143,,,False,,False,False,+1 Lap,11
+2000,8,2000-06-18,villeneuve,mazzacane,minardi,22,7,0.2857142857142857,,,False,,False,False,+1 Lap,12
+2000,8,2000-06-18,villeneuve,irvine,jaguar,16,7,0.42857142857142855,,,False,,False,False,+3 Laps,13
+2000,8,2000-06-18,villeneuve,ralf_schumacher,williams,12,7,0.42857142857142855,,,True,accident,False,False,Collision,14
+2000,8,2000-06-18,villeneuve,villeneuve,bar,6,7,0.42857142857142855,,,True,accident,False,False,Collision,15
+2000,8,2000-06-18,villeneuve,gene,minardi,20,7,0.5714285714285714,,,True,accident,False,False,Spun off,16
+2000,8,2000-06-18,villeneuve,rosa,arrows,9,6,0.6666666666666666,,,True,accident,False,False,Collision,R
+2000,8,2000-06-18,villeneuve,salo,sauber,15,7,0.2857142857142857,,,True,mechanical,False,False,Electrical,R
+2000,8,2000-06-18,villeneuve,alesi,prost,17,7,0.7142857142857143,,,True,mechanical,False,False,Electrical,R
+2000,8,2000-06-18,villeneuve,heidfeld,prost,21,6,0.5,,,True,mechanical,False,False,Engine,R
+2000,8,2000-06-18,villeneuve,frentzen,jordan,5,7,0.5714285714285714,,,True,mechanical,False,False,Brakes,R
+2000,8,2000-06-18,villeneuve,herbert,jaguar,11,7,0.42857142857142855,,,True,mechanical,False,False,Gearbox,R
+2000,9,2000-07-02,magny_cours,coulthard,mclaren,2,8,0.125,,,False,,False,False,Finished,1
+2000,9,2000-07-02,magny_cours,hakkinen,mclaren,4,8,0.25,,,False,,False,False,Finished,2
+2000,9,2000-07-02,magny_cours,barrichello,ferrari,3,8,0.25,,,False,,False,False,Finished,3
+2000,9,2000-07-02,magny_cours,villeneuve,bar,7,8,0.5,,,False,,False,False,Finished,4
+2000,9,2000-07-02,magny_cours,ralf_schumacher,williams,5,8,0.5,,,False,,False,False,Finished,5
+2000,9,2000-07-02,magny_cours,trulli,jordan,9,8,0.5,,,False,,False,False,Finished,6
+2000,9,2000-07-02,magny_cours,frentzen,jordan,8,8,0.625,,,False,,False,False,+1 Lap,7
+2000,9,2000-07-02,magny_cours,button,williams,10,8,0.625,,,False,,False,False,+1 Lap,8
+2000,9,2000-07-02,magny_cours,fisichella,benetton,14,8,0.0,,,False,,False,False,+1 Lap,9
+2000,9,2000-07-02,magny_cours,salo,sauber,12,8,0.375,,,False,,False,False,+1 Lap,10
+2000,9,2000-07-02,magny_cours,diniz,sauber,15,8,0.5,,,False,,False,False,+1 Lap,11
+2000,9,2000-07-02,magny_cours,heidfeld,prost,16,7,0.5714285714285714,,,False,,False,False,+1 Lap,12
+2000,9,2000-07-02,magny_cours,irvine,jaguar,6,8,0.375,,,False,,False,False,+2 Laps,13
+2000,9,2000-07-02,magny_cours,alesi,prost,18,8,0.75,,,False,,False,False,+2 Laps,14
+2000,9,2000-07-02,magny_cours,gene,minardi,21,8,0.625,,,False,,False,False,+2 Laps,15
+2000,9,2000-07-02,magny_cours,michael_schumacher,ferrari,1,8,0.125,,,True,mechanical,False,False,Engine,R
+2000,9,2000-07-02,magny_cours,rosa,arrows,13,7,0.7142857142857143,,,True,mechanical,False,False,Transmission,R
+2000,9,2000-07-02,magny_cours,wurz,benetton,17,8,0.375,,,True,accident,False,False,Spun off,R
+2000,9,2000-07-02,magny_cours,mazzacane,minardi,22,8,0.25,,,True,accident,False,False,Spun off,R
+2000,9,2000-07-02,magny_cours,verstappen,arrows,20,8,0.625,,,True,mechanical,False,False,Transmission,R
+2000,9,2000-07-02,magny_cours,herbert,jaguar,11,8,0.5,,,True,mechanical,False,False,Gearbox,R
+2000,9,2000-07-02,magny_cours,zonta,bar,19,8,0.375,,,True,accident,False,False,Spun off,R
+2000,10,2000-07-16,red_bull_ring,hakkinen,mclaren,1,9,0.2222222222222222,,,False,,False,False,Finished,1
+2000,10,2000-07-16,red_bull_ring,coulthard,mclaren,2,9,0.1111111111111111,,,False,,False,False,Finished,2
+2000,10,2000-07-16,red_bull_ring,barrichello,ferrari,3,9,0.2222222222222222,,,False,,False,False,Finished,3
+2000,10,2000-07-16,red_bull_ring,villeneuve,bar,7,9,0.4444444444444444,,,False,,False,False,+1 Lap,4

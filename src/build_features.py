@@ -13,7 +13,14 @@ Missing values are left as NaN on purpose (driver's first race, constructor's
 first season, circuit's first appearance). How to fill them is a modeling
 decision for step 3.
 
-Output: data/processed/features.parquet (+ a small CSV sample).
+Rows with started=False (car never took the start) are excluded BEFORE any
+history is computed: they neither appear as modeling rows nor feed the prior
+rates, because nothing on track caused those outcomes. They remain in the
+labeled table (data/processed/results_labeled.parquet) for the audit trail.
+
+Output: data/processed/features.parquet (+ a small CSV sample), carrying
+`status` and `position_text` through as audit columns so every labeling
+decision can be re-checked without going back to the cache.
 """
 
 import pandas as pd
@@ -78,6 +85,9 @@ def add_constructor_history(df: pd.DataFrame) -> pd.DataFrame:
 
 def build() -> pd.DataFrame:
     df = apply_labels(pd.read_parquet(RESULTS_PARQUET))
+    # Drop never-started rows before computing anything, so they are neither
+    # modeling rows nor part of any prior-rate denominator.
+    df = df[df["started"]]
     df = df.sort_values(["season", "round", "position"]).reset_index(drop=True)
 
     df = add_driver_history(df)
@@ -92,7 +102,10 @@ def build() -> pd.DataFrame:
         "driver_prior_starts", "driver_prior_dnf_rate",
         "constructor_prev_season_dnf_rate", "circuit_hist_dnf_rate",
         # targets (outcomes - never to be used as inputs)
-        "dnf", "dnf_category", "label_unsure",
+        "dnf", "dnf_category", "label_unsure", "disqualified",
+        # audit columns (outcome data - never features): the raw values the
+        # labels were decided from, kept so decisions can be re-checked
+        "status", "position_text",
     ]
     return df[columns]
 

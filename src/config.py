@@ -27,4 +27,5 @@ REQUEST_DELAY_SECONDS = 0.6
 # Output files
 RESULTS_PARQUET = PROCESSED_DIR / "results.parquet"
 RESULTS_SAMPLE_CSV = PROCESSED_DIR / "results_sample.csv"
+RESULTS_LABELED_PARQUET = PROCESSED_DIR / "results_labeled.parquet"
 QUALITY_REPORT_MD = REPORTS_DIR / "data_quality.md"
