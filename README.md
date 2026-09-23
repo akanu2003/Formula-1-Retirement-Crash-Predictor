@@ -1,7 +1,8 @@
 # Formula 1 Retirement / Crash Predictor
 
 Predicting whether a Formula 1 driver will retire from a race (accident, collision,
-mechanical failure, ...) using historical race data from the 2000–2024 seasons.
+mechanical failure, ...) using historical race data from 2000 through the current
+season (2026, in progress).
 
 **Current status: step 2 — labels, pre-race features, and exploration.** No
 models yet. See [EXPLANATION.md](EXPLANATION.md) for a plain-language walkthrough

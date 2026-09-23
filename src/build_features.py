@@ -27,6 +27,7 @@ import pandas as pd
 
 from src.config import PROCESSED_DIR, RESULTS_PARQUET
 from src.labels import apply_labels
+from src.reference import add_reference_columns
 
 FEATURES_PARQUET = PROCESSED_DIR / "features.parquet"
 FEATURES_SAMPLE_CSV = PROCESSED_DIR / "features_sample.csv"
@@ -93,11 +94,14 @@ def build() -> pd.DataFrame:
     df = add_driver_history(df)
     df = add_circuit_history(df)
     df = add_constructor_history(df)
+    df = add_reference_columns(df)
 
     columns = [
         # identifiers / context (all known before the race)
         "season", "round", "race_date", "circuit_id",
         "driver_id", "constructor_id", "grid",
+        # season-level reference data (hand-curated in src/reference.py)
+        "power_unit", "reg_reset",
         # engineered pre-race features
         "driver_prior_starts", "driver_prior_dnf_rate",
         "constructor_prev_season_dnf_rate", "circuit_hist_dnf_rate",
@@ -119,6 +123,10 @@ def main():
     assert first["driver_prior_dnf_rate"].isna().all()
     assert first["circuit_hist_dnf_rate"].isna().all()
     assert first["constructor_prev_season_dnf_rate"].isna().all()
+
+    # Reference-data coverage: every constructor-season must have a power unit.
+    unmapped = df.loc[df["power_unit"].isna(), ["constructor_id", "season"]].drop_duplicates()
+    assert unmapped.empty, f"constructor-seasons without a power unit:\n{unmapped.to_string()}"
 
     PROCESSED_DIR.mkdir(parents=True, exist_ok=True)
     df.to_parquet(FEATURES_PARQUET, index=False)

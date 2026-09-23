@@ -10,9 +10,12 @@ RAW_DIR = DATA_DIR / "raw"
 PROCESSED_DIR = DATA_DIR / "processed"
 REPORTS_DIR = PROJECT_ROOT / "reports"
 
-# Seasons covered by the project (inclusive).
+# Seasons covered by the project (inclusive). The final season may be in
+# progress: the loader takes whatever rounds the source has. NOTE: completed
+# pages are cached in data/raw/, so after new races happen, delete the current
+# season's cache files to pick them up.
 FIRST_SEASON = 2000
-LAST_SEASON = 2024
+LAST_SEASON = 2026
 SEASONS = range(FIRST_SEASON, LAST_SEASON + 1)
 
 # Jolpica-F1 API (Ergast successor). No API key needed.

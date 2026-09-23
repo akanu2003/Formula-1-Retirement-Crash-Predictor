@@ -4,10 +4,12 @@ This document walks through everything built in step 1, in plain language. Read 
 top to bottom; by the end you should understand exactly what data we have, how it
 got here, and what you need to decide before step 2 (feature engineering).
 
-**The headline:** we now have one clean table with **10,071 rows** — one row for
-every driver in every Formula 1 race from 2000 through 2024 (483 races) — including
-how each driver's race ended. It lives at `data/processed/results.parquet`, and
-`reports/data_quality.md` describes its quality in detail.
+**The headline:** we now have one clean table with **10,858 rows** — one row for
+every driver in every Formula 1 race from 2000 through the season in progress
+(2026, through round 14) — including how each driver's race ended. It lives at
+`data/processed/results.parquet`, and `reports/data_quality.md` describes its
+quality in detail. (Step 1 originally covered 2000–2024; the extension to
+2025–26 is documented in the "Coverage extension" section near the end.)
 
 ---
 
@@ -419,6 +421,94 @@ cause; any DNF row lacks a cause; or any `started=False` row completed laps.
 Audit columns `status` and `position_text` are carried through both the labeled
 table and the feature table so every decision can be re-checked without going
 back to the raw cache.
+
+## Coverage extension: 2025 and 2026
+
+The dataset now runs through the season in progress. What was checked and found:
+
+### Sources
+
+Ergast retired at the end of 2024; **Jolpica-F1 carries on and serves both 2025
+and 2026** with a schema byte-for-byte identical to the 2000–2024 data (verified
+key-by-key before loading — race, result, driver, and constructor objects all
+match). **FastF1 also covers the current season**: its 2026 schedule, race
+results (including grid), and qualifying all load. So: Jolpica remains the
+single source for this table across all 27 seasons; FastF1 stays reserved for
+later enrichment. One operational caveat: the loader caches by season, so the
+in-progress 2026 cache freezes at the moment it was fetched — delete
+`data/raw/results_2026_*.json` after new races to pick them up (noted in
+`src/config.py`).
+
+Pulled: the full 2025 season (24 rounds, 479 rows) and 2026 rounds 1–14, the
+last completed being the **Spanish Grand Prix on 13 September 2026** (22 cars
+per round, 308 rows). The 2026 calendar shows its disruption in the source:
+23 rounds scheduled, two Spanish-named races (round 7 "Barcelona Grand Prix",
+round 14 "Spanish Grand Prix"), and a round 16 titled "Bahrain Grand Prix in
+Malaysia" (4 October). Nothing was hardcoded about round counts — the loader
+takes what the source reports.
+
+**Qualifying and grid for live prediction:** every completed 2026 round has
+qualifying results and grid positions in Jolpica (grid present for all 308
+rows), and FastF1 serves the same from the official timing feed. Jolpica is
+community-run and documents no update deadline; in practice race-weekend data
+appears within hours, but if a live pipeline ever finds Jolpica lagging on a
+Saturday night, FastF1 (which reads the official live-timing source) is the
+faster path to the grid.
+
+### The labeling policy on the new seasons (verified, not changed)
+
+- **No new status strings and no new position_text values** appear in 2025–26
+  that weren't already in 2000–2024. Zero rows are unclassifiable; the
+  validator passes on the full 10,858-row dataset.
+- The cause-recording break continues: 2025's non-finishes are 51 generic
+  `Retired` + 6 `Disqualified` + 3 `Did not start`; 2026's are 57 `Retired` +
+  7 `Did not start`. The quality report now flags 2023–2026.
+- The position_text guard earned its keep on new data too: **2 rows in 2026**
+  carry a lap-gap status but classification "R" and were caught as `unknown`.
+
+### New and renamed constructors (reported, not fixed)
+
+The source uses **`cadillac`** (new team) and **`audi`** — and `audi` is a
+**separate identifier from `sauber`**, which ran through 2025. So Audi's
+Sauber lineage is invisible to the feature build, exactly like earlier renames.
+For both teams, `constructor_prev_season_dnf_rate` in 2026 comes out as a
+**missing value (NaN)** — not a zero and not an error. Whether to hand-curate
+a lineage map (which would give Audi its Sauber history, but leave Cadillac
+genuinely blank) is still decision 3 above.
+
+### The generic `Retired` pile-up (reported, not moved)
+
+Where 2023+ `Retired` rows land today: category **"other"**, flagged
+`label_unsure` — 53 (2023), 49 (2024), 51 (2025), 57 (2026 so far) = **210
+rows**, against only 64 pre-2023. **Recommendation: move status `Retired` to
+the "unknown" category.** "Unknown" was defined as "retired per the
+classification, but no cause on record" — which is literally what these rows
+are; the 15 lap-gap rows already there are the same thing in different
+clothes. That would leave "other" holding only genuine oddities (withdrawals,
+injury, safety, not-classified) and make the category names honest. Not
+applied — the labeling policy is yours to change.
+
+### New columns (data collection only)
+
+- **`power_unit`** — each constructor's engine supplier, per season,
+  hand-curated in `src/reference.py` (season-ranged, since suppliers are
+  shared and change over time: e.g. McLaren ran Mercedes → Honda → Renault →
+  Mercedes across 2000–2026). Sponsor badges are collapsed to the real maker
+  (TAG Heuer→Renault, Petronas→Ferrari, Acer→Ferrari, Playlife→Supertec,
+  European→Ford), with each collapse and every lower-confidence entry recorded
+  in `PU_NOTES` in that file. "Honda RBPT" (2022–25) and "Red Bull Ford"
+  (2026) are kept distinct from works Honda because they are separate shared
+  programs. The 2026 lineup (Ferrari: Ferrari/Haas/Cadillac; Mercedes:
+  Mercedes/McLaren/Williams/Alpine; Honda: Aston Martin; Audi: Audi; Red Bull
+  Ford: both Red Bull teams) was verified against current season coverage.
+  Every constructor-season in the data resolves — an assertion in
+  `build_features` fails the build if a future one doesn't.
+- **`reg_reset`** — True for seasons that opened a major technical regulation
+  era: 2014, 2017, 2022, 2026 (as specified) plus two defensible additions,
+  2006 (V10→V8) and 2009 (aero overhaul + KERS), flagged in
+  `src/reference.py` so they're easy to remove. The 2026 uptick in DNF rate
+  (~20% vs ~10% in 2024–25) fits the pattern of first-year resets like 2014
+  and 2017 — evidence this column carries signal.
 
 ## 5. Decisions to make before step 3 (modeling)
 
